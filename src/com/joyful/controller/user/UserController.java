@@ -71,8 +71,10 @@ public class UserController {
 			}
 			
 			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条用户"+failureMsg);
+			
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入用户失败！失败信息："+e.getMessage());
+			
 		}
 		return "redirect:"+basePath+"/userController/userList.do";
     }
@@ -86,7 +88,9 @@ public class UserController {
 		for (String message : messages){
 			sb.append(message).append(messages.length>1?"<br/>":"");
 		}
+		
 		redirectAttributes.addFlashAttribute("message", sb.toString());
+		
 	}
 	
 	@RequestMapping("/xdemo")
