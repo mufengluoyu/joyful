@@ -35,17 +35,17 @@ public class UserController {
     public String toIndex(HttpServletRequest request,Model model){
 		
     	List<UserEntity> userList = new ArrayList<UserEntity>();
-    	for(int i = 0 ; i < 4 ; i++){
+    	for(int i = 0 ; i < 20 ; i++){
     		UserEntity user = new UserEntity();
     		user.setAge(12);
     		user.setUserName("xujingbin");
     		user.setPassword("22222222");
     		userList.add(user);
     	}
-    	Page<UserEntity> page = new Page<UserEntity>(1, 10);
+    	Page<UserEntity> page = new Page<UserEntity>(8, 2);
     	page.setResult(userList);
     	page.setTotal(4);
-    	page.setPages(1);
+    	page.setPages(10);
     	page.setStartRow(0);
     	page.setEndRow(4);
     	model.addAttribute("pageStr",PageStrUtil.pageStr(page, ""));

@@ -110,8 +110,8 @@
 				</div>
 				
 				<!-- 分页开始 -->
-				<div style="width: 250px;margin: auto;">
-					<ul class="pagination">
+				<div align="center" style="width: 100%;margin: auto;">
+					<ul  class="pagination">
 					 ${pageStr }
 					</ul>
 				</div>
