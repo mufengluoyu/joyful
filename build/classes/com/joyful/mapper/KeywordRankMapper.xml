@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.joyful.dao.keywordrank.KeywordRankDao" >
+  <resultMap id="BaseResultMap" type="com.joyful.entity.keywordrank.KeywordRankEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="send_Date" property="sendDate" jdbcType="TIMESTAMP" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="extension_unit" property="extensionUnit" jdbcType="VARCHAR" />
+    <result column="extension_plan" property="extensionPlan" jdbcType="VARCHAR" />
+    <result column="show_quantity" property="showQuantity" jdbcType="DECIMAL" />
+    <result column="click_quantity" property="clickQuantity" jdbcType="DECIMAL" />
+    <result column="consume_quantity" property="consumeQuantity" jdbcType="DECIMAL" />
+    <result column="click_rate" property="clickRate" jdbcType="VARCHAR" />
+    <result column="click_average_price" property="clickAveragePrice" jdbcType="DECIMAL" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="web_page_conversion" property="webPageConversion" jdbcType="DECIMAL" />
+    <result column="merchant_bridge_conversion" property="merchantBridgeConversion" jdbcType="DECIMAL" />
+    <result column="telephone_conversion" property="telephoneConversion" jdbcType="DECIMAL" />
+    <result column="average_order" property="averageOrder" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_Date, keyword, extension_unit, extension_plan, show_quantity, click_quantity, 
+    consume_quantity, click_rate, click_average_price, account, web_page_conversion, 
+    merchant_bridge_conversion, telephone_conversion, average_order, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from keyword_rank
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from keyword_rank
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.joyful.entity.keywordrank.KeywordRankEntity" >
+    insert into keyword_rank (id, send_Date, keyword, 
+      extension_unit, extension_plan, show_quantity, 
+      click_quantity, consume_quantity, click_rate, 
+      click_average_price, account, web_page_conversion, 
+      merchant_bridge_conversion, telephone_conversion, 
+      average_order, type)
+    values (#{id,jdbcType=VARCHAR}, #{sendDate,jdbcType=TIMESTAMP}, #{keyword,jdbcType=VARCHAR}, 
+      #{extensionUnit,jdbcType=VARCHAR}, #{extensionPlan,jdbcType=VARCHAR}, #{showQuantity,jdbcType=DECIMAL}, 
+      #{clickQuantity,jdbcType=DECIMAL}, #{consumeQuantity,jdbcType=DECIMAL}, #{clickRate}, 
+      #{clickAveragePrice,jdbcType=DECIMAL}, #{account,jdbcType=VARCHAR}, #{webPageConversion,jdbcType=DECIMAL}, 
+      #{merchantBridgeConversion,jdbcType=DECIMAL}, #{telephoneConversion,jdbcType=DECIMAL}, 
+      #{averageOrder,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.joyful.entity.keywordrank.KeywordRankEntity" >
+    insert into keyword_rank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendDate != null" >
+        send_Date,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="extensionUnit != null" >
+        extension_unit,
+      </if>
+      <if test="extensionPlan != null" >
+        extension_plan,
+      </if>
+      <if test="showQuantity != null" >
+        show_quantity,
+      </if>
+      <if test="clickQuantity != null" >
+        click_quantity,
+      </if>
+      <if test="consumeQuantity != null" >
+        consume_quantity,
+      </if>
+      <if test="clickRate != null" >
+        click_rate,
+      </if>
+      <if test="clickAveragePrice != null" >
+        click_average_price,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="webPageConversion != null" >
+        web_page_conversion,
+      </if>
+      <if test="merchantBridgeConversion != null" >
+        merchant_bridge_conversion,
+      </if>
+      <if test="telephoneConversion != null" >
+        telephone_conversion,
+      </if>
+      <if test="averageOrder != null" >
+        average_order,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionUnit != null" >
+        #{extensionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionPlan != null" >
+        #{extensionPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="showQuantity != null" >
+        #{showQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="clickQuantity != null" >
+        #{clickQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeQuantity != null" >
+        #{consumeQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="clickRate != null" >
+        #{clickRate},
+      </if>
+      <if test="clickAveragePrice != null" >
+        #{clickAveragePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="webPageConversion != null" >
+        #{webPageConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantBridgeConversion != null" >
+        #{merchantBridgeConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="telephoneConversion != null" >
+        #{telephoneConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="averageOrder != null" >
+        #{averageOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.joyful.entity.keywordrank.KeywordRankEntity" >
+    update keyword_rank
+    <set >
+      <if test="sendDate != null" >
+        send_Date = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionUnit != null" >
+        extension_unit = #{extensionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionPlan != null" >
+        extension_plan = #{extensionPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="showQuantity != null" >
+        show_quantity = #{showQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="clickQuantity != null" >
+        click_quantity = #{clickQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeQuantity != null" >
+        consume_quantity = #{consumeQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="clickRate != null" >
+        click_rate = #{clickRate},
+      </if>
+      <if test="clickAveragePrice != null" >
+        click_average_price = #{clickAveragePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="webPageConversion != null" >
+        web_page_conversion = #{webPageConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantBridgeConversion != null" >
+        merchant_bridge_conversion = #{merchantBridgeConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="telephoneConversion != null" >
+        telephone_conversion = #{telephoneConversion,jdbcType=DECIMAL},
+      </if>
+      <if test="averageOrder != null" >
+        average_order = #{averageOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.joyful.entity.keywordrank.KeywordRankEntity" >
+    update keyword_rank
+    set send_Date = #{sendDate,jdbcType=TIMESTAMP},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      extension_unit = #{extensionUnit,jdbcType=VARCHAR},
+      extension_plan = #{extensionPlan,jdbcType=VARCHAR},
+      show_quantity = #{showQuantity,jdbcType=DECIMAL},
+      click_quantity = #{clickQuantity,jdbcType=DECIMAL},
+      consume_quantity = #{consumeQuantity,jdbcType=DECIMAL},
+      click_rate = #{clickRate},
+      click_average_price = #{clickAveragePrice,jdbcType=DECIMAL},
+      account = #{account,jdbcType=VARCHAR},
+      web_page_conversion = #{webPageConversion,jdbcType=DECIMAL},
+      merchant_bridge_conversion = #{merchantBridgeConversion,jdbcType=DECIMAL},
+      telephone_conversion = #{telephoneConversion,jdbcType=DECIMAL},
+      average_order = #{averageOrder,jdbcType=DECIMAL},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findKeywordRankEntity" resultMap="BaseResultMap"  parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from keyword_rank
+    where 1=1
+     <if test="sendDateStart != null" >
+       	AND send_Date &gt;= #{sendDateStart}
+      </if>
+      <if test="sendDateEnd != null" >
+       	AND send_Date  &lt; #{sendDateEnd}
+      </if>
+      <if test="keywordRank.keyword != null" >
+        AND keyword like  concat('%',#{keywordRank.keywordRank.keyword,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="keywordRank.extensionUnit != null" >
+        AND extension_unit like  concat('%', #{keywordRank.extensionUnit,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="keywordRank.extensionPlan != null" >
+        AND extension_plan like  concat('%', #{keywordRank.extensionPlan,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="keywordRank.account != null" >
+        AND account like concat('%', #{keywordRank.account,jdbcType=VARCHAR},'%') 
+      </if>
+      <if test="keywordRank.type != null" >
+        AND type = #{keywordRank.type,jdbcType=VARCHAR}
+      </if>
+      <if test="orderByType == null " >
+      	order by consume_quantity desc
+      </if>
+      <if test="orderByType == 1 " >
+      	order by consume_quantity desc
+      </if>
+      <if test="orderByType == 2 " >
+      	order by click_quantity desc
+      </if>
+      <if test="orderByType == 3 " >
+      	order by show_quantity desc
+      </if>
+      limit 0,10
+  </select>
+</mapper>

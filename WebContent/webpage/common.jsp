@@ -43,7 +43,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if($(endId).val()=='') maxBeginTime='';//如果结束时间为空，则开始时间的最大日期不设置
 		laydate({
 			istime: true,
-			format: 'YYYY-MM-DD hh:mm:ss',
+			//format: 'YYYY-MM-DD hh:mm:ss',
+			format: 'YYYY-MM-DD',
 			max: maxBeginTime,
 			choose: function(datas){
 				minEndTime = datas;//开始日选好后，重置结束日的最小日期
@@ -57,7 +58,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if($(beginId).val()=='') minEndTime='';//如果开始时间为空，则结束时间的最小日期不设置
 		laydate({
 			istime: true, 
-			format: 'YYYY-MM-DD hh:mm:ss',
+			//format: 'YYYY-MM-DD hh:mm:ss',
+			format: 'YYYY-MM-DD',
 			min: minEndTime,
 			choose: function(datas){
 				maxBeginTime = datas;//结束日选好后，重置开始日的最大日期

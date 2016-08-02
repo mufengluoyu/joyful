@@ -58,4 +58,5 @@
 	</bean>
 		<!-- 默认的注解映射的支持 DefaultAnnotationHandlerMapping-->
 	<mvc:annotation-driven /> 
+	
 </beans> 
