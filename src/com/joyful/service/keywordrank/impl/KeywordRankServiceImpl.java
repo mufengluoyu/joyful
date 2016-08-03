@@ -27,32 +27,24 @@ public class KeywordRankServiceImpl implements IKeywordRankService{
 	public Page<KeywordRankEntity> findKeywordRankEntity(KeywordRankEntity record,Date sendDateStart,Date sendDateEnd,String orderByType,String pageNumStr,String pageSizeStr){
 		int pageNum = 1;
 		int pageSize = 10;
-//		if(StringUtil.isNotEmpty(pageNumStr)){
-//			pageNum = Integer.parseInt(pageNumStr);
-//		}
-//		if(StringUtil.isNotEmpty(pageSizeStr)){
-//			pageSize = Integer.parseInt(pageSizeStr);
-//		}
-//		PageHelper.startPage(pageNum, pageSize);
-//		keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
-//		return PageHelper.endPage();
-//		if(StringUtil.isNotEmpty(orderByType)){
-//			if(orderTypeEnum.SHOW.getIndex().equals(orderByType)){
-//				orderByType = " order by show_quantity desc ";
-//			}else if(orderTypeEnum.CLICK.getIndex().equals(orderByType)){
-//				orderByType = " order by click_quantity desc  ";
-//			}else{
-//				orderByType = " order by consume_quantity desc ";
-//			}
-//		}
-		List<KeywordRankEntity> list = keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
-		Page<KeywordRankEntity> page = new Page<KeywordRankEntity>(pageNum, pageSize);
-    	page.setResult(list);
-    	page.setTotal(10);
-    	page.setPages(1);
-    	page.setStartRow(0);
-    	page.setEndRow(10);
-    	return page;
+		if(StringUtil.isNotEmpty(pageNumStr)){
+			pageNum = Integer.parseInt(pageNumStr);
+		}
+		if(StringUtil.isNotEmpty(pageSizeStr)){
+			pageSize = Integer.parseInt(pageSizeStr);
+		}
+		PageHelper.startPage(pageNum, pageSize);
+		keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
+		return PageHelper.endPage();
+
+//		List<KeywordRankEntity> list = keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
+//		Page<KeywordRankEntity> page = new Page<KeywordRankEntity>(pageNum, pageSize);
+//    	page.setResult(list);
+//    	page.setTotal(10);
+//    	page.setPages(1);
+//    	page.setStartRow(0);
+//    	page.setEndRow(10);
+//    	return page;
 		
 	}
 	

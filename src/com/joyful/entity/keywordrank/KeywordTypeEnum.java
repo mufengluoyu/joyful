@@ -10,7 +10,7 @@ public enum KeywordTypeEnum implements EnumObj{
     private String name;
     
     // 构造方法
-    KeywordTypeEnum(String name, String index) {
+    KeywordTypeEnum(String index,String name ) {
         this.name = name;
         this.index = index;
     }

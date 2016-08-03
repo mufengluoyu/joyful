@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.joyful.common.page.PageHelper.Page;
+import com.joyful.common.page.PageStrUtil;
 import com.joyful.common.util.DateUtil;
 import com.joyful.common.util.HttpURLUtil;
 import com.joyful.common.util.SerialNo;
@@ -62,6 +63,7 @@ public class KeywordRankController {
 		Page<KeywordRankEntity> page = keywordRankService.findKeywordRankEntity(record, startTime, endTime, orderType,pageNum,pageSize);
 		
 		model.addAttribute("page", page);
+		model.addAttribute("pageStr", PageStrUtil.pageStr(page, ""));
 		model.addAttribute("type", type);
 		model.addAttribute("orderType", orderType);
 		model.addAttribute("sendDateStart", sendDateStart);

@@ -19,7 +19,7 @@ import java.util.Properties;
  * @author hechangzhi
  * Created by 2016年7月21日15:54:20
  */  
-@Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}),  
+@Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class,Integer.class}),  
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})  
 public class PageHelper implements Interceptor {  
     private static final Logger logger = Logger.getLogger(PageHelper.class);  
@@ -128,7 +128,7 @@ public class PageHelper implements Interceptor {
 //        pageSql.append(") where row_id > ").append(page.getStartRow());  
         
         pageSql.append(sql);
-        pageSql.append("limit ").append(page.getStartRow()).append(",").append(page.getEndRow());
+        pageSql.append("  limit ").append(page.getStartRow()).append(",").append(page.getPageSize());
         return pageSql.toString();  
     }  
   
@@ -144,7 +144,7 @@ public class PageHelper implements Interceptor {
 	private void setPageParameter(String sql, Connection connection, MappedStatement mappedStatement,  
                                   BoundSql boundSql, Page page) {  
         // 记录总记录数  
-        String countSql = "select count(0) from (" + sql + ")";  
+        String countSql = "select count(1) from (" + sql + ") a ";  
         PreparedStatement countStmt = null;  
         ResultSet rs = null;  
         try {  

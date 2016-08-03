@@ -259,6 +259,5 @@
       <if test="orderByType == 3 " >
       	order by show_quantity desc
       </if>
-      limit 0,10
   </select>
 </mapper>

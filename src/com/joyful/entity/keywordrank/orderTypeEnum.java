@@ -10,7 +10,7 @@ public enum orderTypeEnum implements EnumObj{
     private String name;
     
     // 构造方法
-    orderTypeEnum(String name, String index) {
+    orderTypeEnum(String index, String name) {
         this.name = name;
         this.index = index;
     }
