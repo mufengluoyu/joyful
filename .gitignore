@@ -8,8 +8,5 @@
 .settings/
 *.classpath
 *.log
-/build/classes/*.class
 .metadata/
-
-
 build/

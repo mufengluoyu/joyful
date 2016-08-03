@@ -59,6 +59,9 @@
 		    <property name="removeAbandoned" value="true" />
 			<property name="removeAbandonedTimeout" value="1800" /> 
 		-->
+		<!-- 配置监控统计拦截的filters 主要用来监控sql的执行状态时间以及反映时间-->
+	    <property name="filters" value="stat" /> 
+		
 	</bean>
 	
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
