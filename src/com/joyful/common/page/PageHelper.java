@@ -192,13 +192,13 @@ public class PageHelper implements Interceptor {
      * Update: 2016年7月21日15:54:03
      */  
     public static class Page<E> {  
-        private int pageNum = 1;  
-        private int pageSize = 10;  
-        private int startRow;  
-        private int endRow;  
-        private long total;  
-        private int pages;  
-        private List<E> result;  
+        private int pageNum = 1;  				//当前页数
+        private int pageSize = 10;  			//每页条数
+        private int startRow;  					//开始于多少条
+        private int endRow;  					//结束于多少条
+        private long total;  					//总共条数
+        private int pages;  					//总共页数
+        private List<E> result;  				//结果集
   
         public Page(int pageNum, int pageSize) {  
             this.pageNum = pageNum;  
