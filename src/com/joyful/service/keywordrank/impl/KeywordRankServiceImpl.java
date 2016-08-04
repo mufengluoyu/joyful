@@ -36,15 +36,6 @@ public class KeywordRankServiceImpl implements IKeywordRankService{
 		PageHelper.startPage(pageNum, pageSize);
 		keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
 		return PageHelper.endPage();
-
-//		List<KeywordRankEntity> list = keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
-//		Page<KeywordRankEntity> page = new Page<KeywordRankEntity>(pageNum, pageSize);
-//    	page.setResult(list);
-//    	page.setTotal(10);
-//    	page.setPages(1);
-//    	page.setStartRow(0);
-//    	page.setEndRow(10);
-//    	return page;
 		
 	}
 	

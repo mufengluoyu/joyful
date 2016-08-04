@@ -101,7 +101,7 @@ public class PageHelper implements Interceptor {
      */  
     @Override  
     public Object plugin(Object target) {  
-        if (target instanceof StatementHandler || target instanceof ResultSetHandler) {  
+        if (localPage.get()!=null && (target instanceof StatementHandler || target instanceof ResultSetHandler)) {  
             return Plugin.wrap(target, this);  
         } else {  
             return target;  
