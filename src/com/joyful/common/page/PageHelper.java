@@ -53,7 +53,8 @@ public class PageHelper implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {  
         if (localPage.get() == null) {  
             return invocation.proceed();  
-        }  
+        }
+        //拦截解析sql，并且在此处更改分页
         if (invocation.getTarget() instanceof StatementHandler) {  
             StatementHandler statementHandler = (StatementHandler) invocation.getTarget();  
             MetaObject metaStatementHandler = SystemMetaObject.forObject(statementHandler);  
@@ -83,7 +84,7 @@ public class PageHelper implements Interceptor {
             setPageParameter(sql, connection, mappedStatement, boundSql, page);  
             // 将执行权交给下一个拦截器  
             return invocation.proceed();  
-        } else if (invocation.getTarget() instanceof ResultSetHandler) {  
+        } else if (invocation.getTarget() instanceof ResultSetHandler) {	//结果集返回增加结果集  
             Object result = invocation.proceed();  
             Page page = localPage.get();  
             page.setResult((List) result);  

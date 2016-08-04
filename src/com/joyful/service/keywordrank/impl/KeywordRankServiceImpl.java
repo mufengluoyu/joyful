@@ -1,7 +1,6 @@
 package com.joyful.service.keywordrank.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,13 @@ import com.joyful.common.page.PageHelper.Page;
 import com.joyful.common.util.StringUtil;
 import com.joyful.dao.keywordrank.KeywordRankDao;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
-import com.joyful.entity.keywordrank.orderTypeEnum;
-import com.joyful.entity.user.UserEntity;
 import com.joyful.service.keywordrank.IKeywordRankService;
 
+/** 
+ * 关键字业务数据
+ * @author hechangzhi 2016年8月4日09:49:51
+ *
+ */
 @Transactional
 @Service("keywordRankService")
 public class KeywordRankServiceImpl implements IKeywordRankService{
@@ -33,6 +35,7 @@ public class KeywordRankServiceImpl implements IKeywordRankService{
 		if(StringUtil.isNotEmpty(pageSizeStr)){
 			pageSize = Integer.parseInt(pageSizeStr);
 		}
+		//启动分页，增加一个分页
 		PageHelper.startPage(pageNum, pageSize);
 		keywordRankDao.findKeywordRankEntity(record, sendDateStart, sendDateEnd, orderByType);
 		return PageHelper.endPage();

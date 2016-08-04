@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.joyful.common.page.PageHelper.Page;
+import com.joyful.common.base.BaseController;
 import com.joyful.common.page.PageStrUtil;
 import com.joyful.common.util.HttpURLUtil;
 import com.joyful.common.util.SerialNo;
@@ -27,7 +28,7 @@ import com.joyful.service.user.IUserService;
 
 @Controller
 @RequestMapping("/userController")
-public class UserController {
+public class UserController extends BaseController {
 	@Autowired
     private IUserService userService;  
       

@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.joyful.common.base.BaseController;
 import com.joyful.common.page.PageHelper.Page;
 import com.joyful.common.page.PageStrUtil;
 import com.joyful.common.util.DateUtil;
@@ -32,7 +32,7 @@ import com.joyful.service.keywordrank.IKeywordRankService;
 
 @Controller
 @RequestMapping("/keywordRankController")
-public class KeywordRankController {
+public class KeywordRankController extends BaseController {
 	
 	@Autowired
 	private IKeywordRankService keywordRankService;
@@ -150,17 +150,5 @@ public class KeywordRankController {
 		}
 		return "redirect:"+basePath+"/keywordRankController/keywordRankList.do";
 	} 
-	/**
-	 * 添加Flash消息
-	 * @param message
-	 */
-	protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
-		StringBuilder sb = new StringBuilder();
-		for (String message : messages){
-			sb.append(message).append(messages.length>1?"<br/>":"");
-		}
-		
-		redirectAttributes.addFlashAttribute("message", sb.toString());
-		
-	}
+	
 }
