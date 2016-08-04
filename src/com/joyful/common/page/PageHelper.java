@@ -101,6 +101,7 @@ public class PageHelper implements Interceptor {
      */  
     @Override  
     public Object plugin(Object target) {  
+    	//判断是否创建了localPage的多线程是否启用分页，通过判断拦截sql的解析和结果集的拦截器的作用
         if (localPage.get()!=null && (target instanceof StatementHandler || target instanceof ResultSetHandler)) {  
             return Plugin.wrap(target, this);  
         } else {  
@@ -121,12 +122,7 @@ public class PageHelper implements Interceptor {
      */  
     @SuppressWarnings("rawtypes")
 	private String buildPageSql(String sql, Page page) {  
-        StringBuilder pageSql = new StringBuilder(200);  
-//        pageSql.append("select * from ( select temp.*, rownum row_id from ( ");  
-//        pageSql.append(sql);  
-//        pageSql.append(" ) temp where rownum <= ").append(page.getEndRow());  
-//        pageSql.append(") where row_id > ").append(page.getStartRow());  
-        
+        StringBuffer pageSql = new StringBuffer();        
         pageSql.append(sql);
         pageSql.append("  limit ").append(page.getStartRow()).append(",").append(page.getPageSize());
         return pageSql.toString();  
