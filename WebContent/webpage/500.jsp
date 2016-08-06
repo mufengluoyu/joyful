@@ -13,7 +13,7 @@ body{font-family: YouYuan;}
 <body style="background-color: #fff;">
 	<div style="margin: auto;text-align: center;">
 		<h3>500错误！！！</h3>
-		<h2>哎呀！您访问的页面不存在。。。</h2>
+		<h2>哎呀！您访问的页面出错了！请您检查网络是否通畅或者联系我们的工作人员！</h2>
 		<img alt="xxxx" src="${ baseUrl }/webpage/images/bad-luck.gif">
 			
 		<p>您还可以以下操作：</p>
