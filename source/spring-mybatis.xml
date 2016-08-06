@@ -5,6 +5,7 @@
     xmlns:p="http://www.springframework.org/schema/p"  
     xmlns:context="http://www.springframework.org/schema/context"  
     xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:task="http://www.springframework.org/schema/task"
     xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd    
                         http://www.springframework.org/schema/tx
@@ -12,7 +13,9 @@
                         http://www.springframework.org/schema/context    
                         http://www.springframework.org/schema/context/spring-context-4.2.xsd    
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+                        http://www.springframework.org/schema/task
+                        http://www.springframework.org/schema/task/spring-task-4.2.xsd">  
     <!-- 自动扫描 -->  
     <context:component-scan base-package="com.joyful" />  
     <!-- 引入配置文件 -->  
@@ -88,4 +91,8 @@
     
  	<!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" /> 
+    
+    <!-- 设置定时任务和定时人物的连接池 -->
+    <task:annotation-driven scheduler="myScheduler"/>
+	<task:scheduler id="myScheduler" pool-size="20"/>
 </beans>
