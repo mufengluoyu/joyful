@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.joyful.common.page.PageHelper.Page;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
+import com.joyful.service.base.BaseService;
 
-public interface IKeywordRankService {
+public interface IKeywordRankService extends BaseService<KeywordRankEntity>{
 	/**
 	 * 查询所有结果
 	 * @param record

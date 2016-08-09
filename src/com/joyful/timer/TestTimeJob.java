@@ -18,13 +18,13 @@ public class TestTimeJob {
 	    
 	    @Scheduled(cron = "0 * * * * ?")
 	    public void run() {
-	        logger.info("MyFirstSpringJob trigger...");
-	        
-	        /* 模拟此Job需耗时5秒 */
-	        try {
-	            TimeUnit.SECONDS.sleep(5);
-	        } catch (InterruptedException e) {
-	            e.printStackTrace();
-	        }
+//	        logger.info("MyFirstSpringJob trigger...");
+//	        
+//	        /* 模拟此Job需耗时5秒 */
+//	        try {
+//	            TimeUnit.SECONDS.sleep(5);
+//	        } catch (InterruptedException e) {
+//	            e.printStackTrace();
+//	        }
 	    }
 }

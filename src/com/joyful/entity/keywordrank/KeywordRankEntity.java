@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
 
-public class KeywordRankEntity {
+import com.joyful.entity.base.BaseEntity;
+
+public class KeywordRankEntity extends BaseEntity{
 	private String id;			//id
 	private String keyword;		//关键字
 	private String extensionUnit;	//推广单元

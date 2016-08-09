@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.joyful.common.base.BaseController;
 import com.joyful.common.page.PageHelper.Page;
 import com.joyful.common.page.PageStrUtil;
 import com.joyful.common.util.DateUtil;
@@ -25,6 +24,7 @@ import com.joyful.common.util.HttpURLUtil;
 import com.joyful.common.util.SerialNo;
 import com.joyful.common.util.StringUtil;
 import com.joyful.common.util.excel.ImportExcel;
+import com.joyful.controller.base.BaseController;
 import com.joyful.entity.keywordrank.BaiduKeywordRankVo;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
 import com.joyful.entity.keywordrank.KeywordTypeEnum;
@@ -33,7 +33,7 @@ import com.joyful.service.keywordrank.IKeywordRankService;
 
 @Controller
 @RequestMapping("/keywordRankController")
-public class KeywordRankController extends BaseController {
+public class KeywordRankController extends BaseController<KeywordRankEntity> {
 	
 	@Autowired
 	private IKeywordRankService keywordRankService;
@@ -87,7 +87,6 @@ public class KeywordRankController extends BaseController {
 				List<KeywordRankEntity> insertLists = new ArrayList<KeywordRankEntity>();
 				if(KeywordTypeEnum.BAIDU.getIndex().equals(type)){
 					List<BaiduKeywordRankVo> list = ei.getDataList(BaiduKeywordRankVo.class);
-					double start  = System.currentTimeMillis() ; 
 					for(BaiduKeywordRankVo baidu : list){
 						KeywordRankEntity record = new KeywordRankEntity();
 						record.setId(SerialNo.getUNID());
@@ -118,8 +117,6 @@ public class KeywordRankController extends BaseController {
 						insertLists.add(record);
 						successNum++;
 					}
-					double end = System.currentTimeMillis() ;
-					 System.out.println("time is : " + (end - start));
 				}else{
 					List<ShenmaKeywordRankVo> list = ei.getDataList(ShenmaKeywordRankVo.class);
 					for(ShenmaKeywordRankVo shenma : list){
@@ -148,10 +145,7 @@ public class KeywordRankController extends BaseController {
 					}
 				}
 				if(insertLists != null && insertLists.size() > 0){
-					double start1  = System.currentTimeMillis() ; 
 					keywordRankService.keywordRankInserts(insertLists);
-					double end1 = System.currentTimeMillis() ;
-					System.out.println("time1 is : " + (end1 - start1));
 				}
 				addMessage(redirectAttributes, "已成功导入 "+successNum+" 条用户"+failureMsg);
 				

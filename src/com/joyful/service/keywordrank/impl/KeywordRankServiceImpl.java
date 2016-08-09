@@ -1,6 +1,5 @@
 package com.joyful.service.keywordrank.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import com.joyful.common.page.PageHelper.Page;
 import com.joyful.common.util.StringUtil;
 import com.joyful.dao.keywordrank.KeywordRankDao;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
+import com.joyful.service.base.abstractbase.AbstractBaseServiceImpl;
 import com.joyful.service.keywordrank.IKeywordRankService;
 
 /** 
@@ -22,7 +22,7 @@ import com.joyful.service.keywordrank.IKeywordRankService;
  */
 @Transactional
 @Service("keywordRankService")
-public class KeywordRankServiceImpl implements IKeywordRankService{
+public class KeywordRankServiceImpl extends AbstractBaseServiceImpl<KeywordRankEntity> implements IKeywordRankService  {
 	
 	@Autowired
 	private KeywordRankDao keywordRankDao;

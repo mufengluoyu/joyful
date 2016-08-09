@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<!-- 搜索框结束 -->
-		
+		<!-- <p>${message}</p> -->
 		<!-- 列表信息开始 -->
 		<div class="row" style="margin-top: 15px;background-color: #fff;">
 			<div class="col-lg-12" style="min-height: 600px;padding-top: 15px;">

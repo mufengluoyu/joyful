@@ -6,10 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.joyful.common.annotation.MyBatisDao;
+import com.joyful.dao.base.BaseDao;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
 
 @MyBatisDao
-public interface KeywordRankDao {
+public interface KeywordRankDao extends BaseDao<KeywordRankEntity>{
 	/**
 	 * 插入表格当中 单条记录插入
 	 * @param record
