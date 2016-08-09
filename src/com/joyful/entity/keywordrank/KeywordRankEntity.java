@@ -63,7 +63,10 @@ public class KeywordRankEntity {
     }
 
     public BigDecimal getShowQuantity() {
-        return showQuantity.setScale(5, RoundingMode.HALF_UP);
+    	if(showQuantity != null)
+    		return showQuantity.setScale(5, RoundingMode.HALF_UP);
+    	else 
+    		return showQuantity;
     }
 
     public void setShowQuantity(BigDecimal showQuantity) {
@@ -71,7 +74,10 @@ public class KeywordRankEntity {
     }
 
     public BigDecimal getClickQuantity() {
-        return clickQuantity.setScale(5, RoundingMode.HALF_UP);
+    	if(clickQuantity != null)
+    		return clickQuantity.setScale(5, RoundingMode.HALF_UP);
+    	else
+    		return clickQuantity;
     }
 
     public void setClickQuantity(BigDecimal clickQuantity) {
@@ -79,7 +85,10 @@ public class KeywordRankEntity {
     }
 
     public BigDecimal getConsumeQuantity() {
-        return consumeQuantity.setScale(5, RoundingMode.HALF_UP);
+    	if(consumeQuantity != null)
+    		return consumeQuantity.setScale(5, RoundingMode.HALF_UP);
+    	else 
+    		return consumeQuantity;
     }
 
     public void setConsumeQuantity(BigDecimal consumeQuantity) {
@@ -95,7 +104,10 @@ public class KeywordRankEntity {
     }
 
     public BigDecimal getClickAveragePrice() {
-        return clickAveragePrice.setScale(5, RoundingMode.HALF_UP);
+    	if(clickAveragePrice != null)
+    		return clickAveragePrice.setScale(5, RoundingMode.HALF_UP);
+    	else 
+    		return clickAveragePrice;
     }
 
     public void setClickAveragePrice(BigDecimal clickAveragePrice) {

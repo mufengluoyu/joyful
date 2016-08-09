@@ -11,7 +11,7 @@ import com.joyful.entity.keywordrank.KeywordRankEntity;
 @MyBatisDao
 public interface KeywordRankDao {
 	/**
-	 * 插入表格当中
+	 * 插入表格当中 单条记录插入
 	 * @param record
 	 * @return
 	 */
@@ -35,4 +35,11 @@ public interface KeywordRankDao {
 	 * @return
 	 */
 	public List<KeywordRankEntity> findKeywordRankEntity(@Param(value="keywordRank")KeywordRankEntity record,@Param(value="sendDateStart")Date sendDateStart,@Param(value="sendDateEnd")Date sendDateEnd,@Param(value="orderByType")String orderByType);
+	
+	/**
+	 * 批量插入功能
+	 * @param list
+	 * @return
+	 */
+	public int insertAll(List<KeywordRankEntity> list);
 }

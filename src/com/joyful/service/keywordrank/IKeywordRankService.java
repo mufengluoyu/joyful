@@ -1,6 +1,7 @@
 package com.joyful.service.keywordrank;
 
 import java.util.Date;
+import java.util.List;
 
 import com.joyful.common.page.PageHelper.Page;
 import com.joyful.entity.keywordrank.KeywordRankEntity;
@@ -24,4 +25,11 @@ public interface IKeywordRankService {
 	 * @return
 	 */
 	public int keywordRankInsert(KeywordRankEntity record);
+	
+	/**
+	 * 批量插入数据
+	 * @param list
+	 * @return
+	 */
+	public int keywordRankInserts(List<KeywordRankEntity> list);
 }

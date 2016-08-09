@@ -1,6 +1,8 @@
 package com.joyful.service.keywordrank.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +44,33 @@ public class KeywordRankServiceImpl implements IKeywordRankService{
 		
 	}
 	
+	/**
+	 * 单条插入语句
+	 */
+	@Transactional(readOnly=false)
 	public int keywordRankInsert(KeywordRankEntity record){
 		return keywordRankDao.insert(record);
 	}
+	/**
+	 * 批量插入
+	 * @param record
+	 * @return
+	 */
+	@Transactional(readOnly=false)
+	public int keywordRankInserts(List<KeywordRankEntity> list){
+//		//主要是防止大量数据库插入超时链接导致数据插入失败
+//		int sumCount = 0;
+//		for(int i = 0 ; i < (list.size()/2000) +1 ;i++){
+//			if(list.size() % 2000 == 0 || i < list.size()/2000){
+//				List<KeywordRankEntity> list1 = list.subList(i*2000, (i+1)*2000);
+//				sumCount += keywordRankDao.insertAll(list1);
+//			}else if(list.size() % 2000 != 0){
+//				List<KeywordRankEntity> list1 = list.subList(i*2000, list.size());
+//				sumCount += keywordRankDao.insertAll(list1);
+//			}
+//		}
+//		return sumCount;
+		return keywordRankDao.insertAll(list);
+	}
+	
 }

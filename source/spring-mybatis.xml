@@ -92,7 +92,7 @@
  	<!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" /> 
     
-    <!-- 设置定时任务和定时人物的连接池 -->
+    <!-- 设置定时任务和定时任务的连接池 -->
     <task:annotation-driven scheduler="myScheduler"/>
 	<task:scheduler id="myScheduler" pool-size="20"/>
 </beans>

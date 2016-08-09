@@ -18,6 +18,9 @@ import com.google.common.collect.Lists;
  *
  */
 public class StringUtil {
+	
+	private static Pattern numericPattern = Pattern.compile("^[0-9]+$");
+	
 	/**
 	 * 判断字符串是否为null，“”，“ ”
 	 * @param str
@@ -224,9 +227,27 @@ public class StringUtil {
         return remoteAddr != null ? remoteAddr : request.getRemoteAddr();
 	}
 	 public static boolean isNotBlank(final CharSequence cs) {
-	        return !StringUtils.isBlank(cs);
-	    }
+        return !StringUtils.isBlank(cs);
+    }
+	 /**
+	 * 判断是否数字表示
+	 * 
+	 * @param src
+	 *            源字符串
+	 * @return 是否数字的标志
+	 */
+	public static boolean isNumeric(String src) {
+		boolean return_value = false;
+		if (src != null && src.length() > 0) {
+			Matcher m = numericPattern.matcher(src);
+			if (m.find()) {
+				return_value = true;
+			}
+		}
+		return return_value;
+	}
+	
 	public static void main(String[] arg){
-		
+		System.out.println(StringUtil.isNumeric("-"));
 	}
 }

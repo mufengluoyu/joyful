@@ -1,6 +1,7 @@
 package com.joyful.controller.keywordrank;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -76,14 +77,17 @@ public class KeywordRankController extends BaseController {
     public String importKeywordRank( @RequestParam MultipartFile file, HttpServletRequest request,RedirectAttributes redirectAttributes){
 		String basePath = HttpURLUtil.findRealBaseUrl(request);
 		String type = request.getParameter("type");
+		
 		if(StringUtil.isNotEmpty(type)){
 			try {
 				int successNum = 0;
 				
 				StringBuilder failureMsg = new StringBuilder();
 				ImportExcel ei = new ImportExcel(file, 0, 0);
+				List<KeywordRankEntity> insertLists = new ArrayList<KeywordRankEntity>();
 				if(KeywordTypeEnum.BAIDU.getIndex().equals(type)){
 					List<BaiduKeywordRankVo> list = ei.getDataList(BaiduKeywordRankVo.class);
+					double start  = System.currentTimeMillis() ; 
 					for(BaiduKeywordRankVo baidu : list){
 						KeywordRankEntity record = new KeywordRankEntity();
 						record.setId(SerialNo.getUNID());
@@ -92,27 +96,30 @@ public class KeywordRankController extends BaseController {
 						record.setExtensionPlan(baidu.getExtensionPlan());
 						record.setExtensionUnit(baidu.getExtensionUnit());
 						record.setSendDate(baidu.getSendDate());
-						if(StringUtil.isNotEmpty(baidu.getShowQuantity()))
+						if(StringUtil.isNumeric(baidu.getShowQuantity()))
 							record.setShowQuantity(new BigDecimal(baidu.getShowQuantity()));
-						if(StringUtil.isNotEmpty(baidu.getClickQuantity()))
+						if(StringUtil.isNumeric(baidu.getClickQuantity()))
 							record.setClickQuantity(new BigDecimal(baidu.getClickQuantity()));
-						if(StringUtil.isNotEmpty(baidu.getConsumeQuantity()))
+						if(StringUtil.isNumeric(baidu.getConsumeQuantity()))
 							record.setConsumeQuantity(new BigDecimal(baidu.getConsumeQuantity()));
-						if(StringUtil.isNotEmpty(baidu.getClickRate()))
+						if(StringUtil.isNumeric(baidu.getClickRate()))
 							record.setClickRate(baidu.getClickRate());
-						if(StringUtil.isNotEmpty(baidu.getClickAveragePrice()))
+						if(StringUtil.isNumeric(baidu.getClickAveragePrice()))
 							record.setClickAveragePrice(new BigDecimal(baidu.getClickAveragePrice()));
-						if(StringUtil.isNotEmpty(baidu.getWebPageConversion()))
+						if(StringUtil.isNumeric(baidu.getWebPageConversion()))
 							record.setWebPageConversion(new BigDecimal(baidu.getWebPageConversion()));
-						if(StringUtil.isNotEmpty(baidu.getMerchantBridgeConversion()))
+						if(StringUtil.isNumeric(baidu.getMerchantBridgeConversion()))
 							record.setMerchantBridgeConversion(new BigDecimal(baidu.getMerchantBridgeConversion()));
-						if(StringUtil.isNotEmpty(baidu.getTelephoneConversion()))
+						if(StringUtil.isNumeric(baidu.getTelephoneConversion()))
 							record.setTelephoneConversion(new BigDecimal(baidu.getTelephoneConversion()));
-						if(StringUtil.isNotEmpty(baidu.getAverageOrder()))
-							record.setAverageOrder(new BigDecimal(baidu.getAverageOrder()));
-						keywordRankService.keywordRankInsert(record);
+						if(StringUtil.isNumeric(baidu.getAverageOrder().trim()))
+							record.setAverageOrder(new BigDecimal(baidu.getAverageOrder().trim()));
+//						keywordRankService.keywordRankInsert(record);
+						insertLists.add(record);
 						successNum++;
 					}
+					double end = System.currentTimeMillis() ;
+					 System.out.println("time is : " + (end - start));
 				}else{
 					List<ShenmaKeywordRankVo> list = ei.getDataList(ShenmaKeywordRankVo.class);
 					for(ShenmaKeywordRankVo shenma : list){
@@ -124,30 +131,38 @@ public class KeywordRankController extends BaseController {
 						record.setExtensionUnit(shenma.getExtensionUnit());
 						record.setSendDate(shenma.getSendDate());
 						record.setAccount(shenma.getAccount());
-						if(StringUtil.isNotEmpty(shenma.getShowQuantity()))
+						if(StringUtil.isNumeric(shenma.getShowQuantity()))
 							record.setShowQuantity(new BigDecimal(shenma.getShowQuantity()));
-						if(StringUtil.isNotEmpty(shenma.getClickQuantity()))
+						if(StringUtil.isNumeric(shenma.getClickQuantity()))
 							record.setClickQuantity(new BigDecimal(shenma.getClickQuantity()));
-						if(StringUtil.isNotEmpty(shenma.getConsumeQuantity()))
+						if(StringUtil.isNumeric(shenma.getConsumeQuantity()))
 							record.setConsumeQuantity(new BigDecimal(shenma.getConsumeQuantity()));
-						if(StringUtil.isNotEmpty(shenma.getClickRate()))
+						if(StringUtil.isNumeric(shenma.getClickRate()))
 							record.setClickRate(shenma.getClickRate());
-						if(StringUtil.isNotEmpty(shenma.getClickAveragePrice()))
+						if(StringUtil.isNumeric(shenma.getClickAveragePrice()))
 							record.setClickAveragePrice(new BigDecimal(shenma.getClickAveragePrice()));
 						
-						keywordRankService.keywordRankInsert(record);
+//						keywordRankService.keywordRankInsert(record);
+						insertLists.add(record);
 						successNum++;
 					}
+				}
+				if(insertLists != null && insertLists.size() > 0){
+					double start1  = System.currentTimeMillis() ; 
+					keywordRankService.keywordRankInserts(insertLists);
+					double end1 = System.currentTimeMillis() ;
+					System.out.println("time1 is : " + (end1 - start1));
 				}
 				addMessage(redirectAttributes, "已成功导入 "+successNum+" 条用户"+failureMsg);
 				
 			} catch (Exception e) {
+				e.printStackTrace();
 				addMessage(redirectAttributes, "导入用户失败！失败信息："+e.getMessage());
-				
 			}
 		}else{
 			addMessage(redirectAttributes, "导入用户失败！失败信息：类型不能为空！");
 		}
+		 
 		return "redirect:"+basePath+"/keywordRankController/keywordRankList.do";
 	} 
 	

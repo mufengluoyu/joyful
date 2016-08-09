@@ -260,4 +260,41 @@
       	order by show_quantity desc
       </if>
   </select>
+  
+  <insert id="insertAll" parameterType="java.util.List" >
+  <!-- 批量插入返回插入的条数 -->
+  <selectKey resultType ="java.lang.Integer" keyProperty= "id"
+                  order= "AFTER">
+       SELECT LAST_INSERT_ID()
+    </selectKey >
+    insert into keyword_rank (id, send_Date, keyword, 
+      extension_unit, extension_plan, show_quantity, 
+      click_quantity, consume_quantity, click_rate, 
+      click_average_price, account, web_page_conversion, 
+      merchant_bridge_conversion, telephone_conversion, 
+      average_order, type)
+    values 
+    <foreach collection ="list" item="keywordRank" index= "index" separator =",">
+    	(
+	    	#{keywordRank.id,jdbcType=VARCHAR}, 
+	    	#{keywordRank.sendDate,jdbcType=TIMESTAMP}, 
+	    	#{keywordRank.keyword,jdbcType=VARCHAR}, 
+	     	#{keywordRank.extensionUnit,jdbcType=VARCHAR}, 
+	      	#{keywordRank.extensionPlan,jdbcType=VARCHAR}, 
+	      	#{keywordRank.showQuantity,jdbcType=DECIMAL}, 
+	      	#{keywordRank.clickQuantity,jdbcType=DECIMAL}, 
+	      	#{keywordRank.consumeQuantity,jdbcType=DECIMAL}, 
+	      	#{keywordRank.clickRate}, 
+	      	#{keywordRank.clickAveragePrice,jdbcType=DECIMAL}, 
+	      	#{keywordRank.account,jdbcType=VARCHAR}, 
+	      	#{keywordRank.webPageConversion,jdbcType=DECIMAL}, 
+	      	#{keywordRank.merchantBridgeConversion,jdbcType=DECIMAL}, 
+	      	#{keywordRank.telephoneConversion,jdbcType=DECIMAL}, 
+	      	#{keywordRank.averageOrder,jdbcType=DECIMAL}, 
+	      	#{keywordRank.type,jdbcType=VARCHAR}
+	      )
+     </foreach>
+  </insert>
+  
+  
 </mapper>
