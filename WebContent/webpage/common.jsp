@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="${ baseUrl }/webpage/js/layer.js"></script>
 <script type="text/javascript" src="${ baseUrl }/webpage/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${ baseUrl }/webpage/js/laydate/laydate.js"></script>
+<script type="text/javascript" src="${ baseUrl }/webpage/js/echarts.js"></script>
 <style>
 	body{font-family: MicrosoftYaHei;margin: 80px 15px 30px 15px;}
 	table{border-collapse: collapse;border-spacing: 0;text-align: center;}
