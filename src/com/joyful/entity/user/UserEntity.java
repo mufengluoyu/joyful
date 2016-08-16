@@ -4,8 +4,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joyful.common.util.excel.annotation.ExcelField;
+import com.joyful.entity.base.BaseEntity;
 
-public class UserEntity {
+public class UserEntity extends BaseEntity{
     private String id;
 
     private String userName;
