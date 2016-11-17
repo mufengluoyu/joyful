@@ -6,7 +6,7 @@ public class RequestThread {
 	
 	public RequestThread(){
 	}
-	protected void start(){ //开始请求
+	protected synchronized void start(){ //开始请求
 		if(RequestServiceThread.t == null){
 			RequestServiceThread.t=new Thread(new Runnable(){
 				public void run(){

@@ -1,5 +1,7 @@
 package com.joyful.common.thread;
 
+import com.joyful.common.util.SpringContextUtil;
+
 public class RequestContentService {
 
 	private boolean flag = false;	//是否屏蔽
@@ -12,6 +14,7 @@ public class RequestContentService {
 	//用户必须实现这个抽象方法，告诉子线程要做什么
 	public void doSomeThing() {
 		// TODO Auto-generated method stub
+		SpringContextUtil.getBean("");
 		try {
 			Thread.sleep(6000);	//查询屏蔽字的方法
 			System.out.println("执行方法flag："+postId);
