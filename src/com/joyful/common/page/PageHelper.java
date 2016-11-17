@@ -16,8 +16,7 @@ import java.util.Properties;
   
 /** 
  * Mybatis - 通用分页拦截器 
- * @author hechangzhi
- * Created by 2016年7月21日15:54:20
+ * updateTime 2016年7月21日15:54:20
  */  
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class,Integer.class}),  
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})  
@@ -189,10 +188,10 @@ public class PageHelper implements Interceptor {
   
     /** 
      * Description: 分页 
-     * Author: hechangzhi
      * Update: 2016年7月21日15:54:03
      */  
-    public static class Page<E> {  
+    public static class Page<E> {
+    	
         private int pageNum = 1;  				//当前页数
         private int pageSize = 10;  			//每页条数
         private int startRow;  					//开始于多少条
